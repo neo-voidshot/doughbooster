@@ -1,5 +1,13 @@
--- Instances: 12 | Scripts: 3 | Modules: 0 | Tags: 0
--- steal a brainrot dough booster source
+--[=[
+ d888b  db    db d888888b      .d888b.      db      db    db  .d8b.  
+88' Y8b 88    88   `88'        VP  `8D      88      88    88 d8' `8b 
+88      88    88    88            odD'      88      88    88 88ooo88 
+88  ooo 88    88    88          .88'        88      88    88 88~~~88 
+88. ~8~ 88b  d88   .88.        j88.         88booo. 88b  d88 88   88    @uniquadev
+ Y888P  ~Y8888P' Y888888P      888888D      Y88888P ~Y8888P' YP   YP  CONVERTER 
+]=]
+
+-- Instances: 11 | Scripts: 3 | Modules: 0 | Tags: 0
 local G2L = {};
 
 -- StarterGui.speedboost
@@ -12,9 +20,9 @@ G2L["1"]["ResetOnSpawn"] = false;
 -- StarterGui.speedboost.Frame
 G2L["2"] = Instance.new("Frame", G2L["1"]);
 G2L["2"]["BorderSizePixel"] = 0;
-G2L["2"]["BackgroundColor3"] = Color3.fromRGB(57, 57, 57);
-G2L["2"]["Size"] = UDim2.new(0, 316, 0, 196);
-G2L["2"]["Position"] = UDim2.new(0.35973, 0, 0.40465, 0);
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(41, 41, 41);
+G2L["2"]["Size"] = UDim2.new(0, 316, 0, 169);
+G2L["2"]["Position"] = UDim2.new(0.35973, 0, 0.43765, 0);
 G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 
 
@@ -32,8 +40,8 @@ G2L["4"] = Instance.new("UICorner", G2L["2"]);
 G2L["5"] = Instance.new("Frame", G2L["2"]);
 G2L["5"]["BorderSizePixel"] = 0;
 G2L["5"]["BackgroundColor3"] = Color3.fromRGB(64, 64, 64);
-G2L["5"]["Size"] = UDim2.new(0, 287, 0, 115);
-G2L["5"]["Position"] = UDim2.new(0.04279, 0, 0.2034, 0);
+G2L["5"]["Size"] = UDim2.new(0, 282, 0, 115);
+G2L["5"]["Position"] = UDim2.new(0.05861, 0, 0.15606, 0);
 G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 
 
@@ -83,24 +91,9 @@ G2L["a"]["Name"] = [[keybind]];
 G2L["a"]["Position"] = UDim2.new(0.39241, 0, 0.65306, 0);
 
 
--- StarterGui.speedboost.Frame.keybind
-G2L["b"] = Instance.new("TextLabel", G2L["2"]);
-G2L["b"]["TextWrapped"] = true;
-G2L["b"]["BorderSizePixel"] = 0;
-G2L["b"]["TextSize"] = 22;
-G2L["b"]["BackgroundColor3"] = Color3.fromRGB(255, 243, 167);
-G2L["b"]["FontFace"] = Font.new([[rbxassetid://12187372629]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
-G2L["b"]["TextColor3"] = Color3.fromRGB(255, 243, 167);
-G2L["b"]["BackgroundTransparency"] = 1;
-G2L["b"]["Size"] = UDim2.new(0, 66, 0, 33);
-G2L["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
-G2L["b"]["Text"] = [[dough]];
-G2L["b"]["Name"] = [[keybind]];
-
-
 -- StarterGui.speedboost.persisting gui
-G2L["c"] = Instance.new("LocalScript", G2L["1"]);
-G2L["c"]["Name"] = [[persisting gui]];
+G2L["b"] = Instance.new("LocalScript", G2L["1"]);
+G2L["b"]["Name"] = [[persisting gui]];
 
 
 -- StarterGui.speedboost.Frame.UIDrag
@@ -157,7 +150,7 @@ local script = G2L["9"];
 	
 	local button = script.Parent
 	local originalWalkSpeed = humanoid.WalkSpeed
-	local boostSpeed = 29
+	local boostSpeed = 27.7
 	
 	local isEnabled = false
 	local connection = nil
@@ -240,8 +233,8 @@ local script = G2L["9"];
 end;
 task.spawn(C_9);
 -- StarterGui.speedboost.persisting gui
-local function C_c()
-local script = G2L["c"];
+local function C_b()
+local script = G2L["b"];
 	-- This script ensures the GUI persists after player death
 	local StarterGui = game:GetService("StarterGui")
 	local Players = game:GetService("Players")
@@ -268,6 +261,6 @@ local script = G2L["c"];
 	-- Also ensure it exists when character respawns
 	player.CharacterAdded:Connect(ensureGuiExists)
 end;
-task.spawn(C_c);
+task.spawn(C_b);
 
 return G2L["1"], require;
