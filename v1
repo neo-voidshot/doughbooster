@@ -1,0 +1,273 @@
+-- Instances: 12 | Scripts: 3 | Modules: 0 | Tags: 0
+-- steal a brainrot dough booster source
+local G2L = {};
+
+-- StarterGui.speedboost
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"));
+G2L["1"]["Name"] = [[speedboost]];
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+G2L["1"]["ResetOnSpawn"] = false;
+
+
+-- StarterGui.speedboost.Frame
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["BorderSizePixel"] = 0;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(57, 57, 57);
+G2L["2"]["Size"] = UDim2.new(0, 316, 0, 196);
+G2L["2"]["Position"] = UDim2.new(0.35973, 0, 0.40465, 0);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- StarterGui.speedboost.Frame.UIDrag
+G2L["3"] = Instance.new("LocalScript", G2L["2"]);
+G2L["3"]["Name"] = [[UIDrag]];
+
+
+-- StarterGui.speedboost.Frame.UICorner
+G2L["4"] = Instance.new("UICorner", G2L["2"]);
+
+
+
+-- StarterGui.speedboost.Frame.Frame
+G2L["5"] = Instance.new("Frame", G2L["2"]);
+G2L["5"]["BorderSizePixel"] = 0;
+G2L["5"]["BackgroundColor3"] = Color3.fromRGB(64, 64, 64);
+G2L["5"]["Size"] = UDim2.new(0, 287, 0, 115);
+G2L["5"]["Position"] = UDim2.new(0.04279, 0, 0.2034, 0);
+G2L["5"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+
+
+-- StarterGui.speedboost.Frame.Frame.UICorner
+G2L["6"] = Instance.new("UICorner", G2L["5"]);
+
+
+
+-- StarterGui.speedboost.Frame.Frame.speed
+G2L["7"] = Instance.new("TextButton", G2L["5"]);
+G2L["7"]["BorderSizePixel"] = 0;
+G2L["7"]["TextSize"] = 14;
+G2L["7"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["7"]["BackgroundColor3"] = Color3.fromRGB(255, 243, 167);
+G2L["7"]["FontFace"] = Font.new([[rbxassetid://12187372629]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["7"]["Size"] = UDim2.new(0, 200, 0, 50);
+G2L["7"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["7"]["Text"] = [[boost]];
+G2L["7"]["Name"] = [[speed]];
+G2L["7"]["Position"] = UDim2.new(0.15331, 0, 0.2087, 0);
+
+
+-- StarterGui.speedboost.Frame.Frame.speed.UICorner
+G2L["8"] = Instance.new("UICorner", G2L["7"]);
+
+
+
+-- StarterGui.speedboost.Frame.Frame.speed.LocalScript
+G2L["9"] = Instance.new("LocalScript", G2L["7"]);
+
+
+
+-- StarterGui.speedboost.Frame.Frame.keybind
+G2L["a"] = Instance.new("TextLabel", G2L["5"]);
+G2L["a"]["TextWrapped"] = true;
+G2L["a"]["BorderSizePixel"] = 0;
+G2L["a"]["TextSize"] = 14;
+G2L["a"]["TextScaled"] = true;
+G2L["a"]["BackgroundColor3"] = Color3.fromRGB(255, 243, 167);
+G2L["a"]["FontFace"] = Font.new([[rbxassetid://12187372629]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["a"]["TextColor3"] = Color3.fromRGB(255, 243, 167);
+G2L["a"]["BackgroundTransparency"] = 1;
+G2L["a"]["Size"] = UDim2.new(0, 66, 0, 17);
+G2L["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["a"]["Text"] = [[keybind: v]];
+G2L["a"]["Name"] = [[keybind]];
+G2L["a"]["Position"] = UDim2.new(0.39241, 0, 0.65306, 0);
+
+
+-- StarterGui.speedboost.Frame.keybind
+G2L["b"] = Instance.new("TextLabel", G2L["2"]);
+G2L["b"]["TextWrapped"] = true;
+G2L["b"]["BorderSizePixel"] = 0;
+G2L["b"]["TextSize"] = 22;
+G2L["b"]["BackgroundColor3"] = Color3.fromRGB(255, 243, 167);
+G2L["b"]["FontFace"] = Font.new([[rbxassetid://12187372629]], Enum.FontWeight.Bold, Enum.FontStyle.Normal);
+G2L["b"]["TextColor3"] = Color3.fromRGB(255, 243, 167);
+G2L["b"]["BackgroundTransparency"] = 1;
+G2L["b"]["Size"] = UDim2.new(0, 66, 0, 33);
+G2L["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["b"]["Text"] = [[dough]];
+G2L["b"]["Name"] = [[keybind]];
+
+
+-- StarterGui.speedboost.persisting gui
+G2L["c"] = Instance.new("LocalScript", G2L["1"]);
+G2L["c"]["Name"] = [[persisting gui]];
+
+
+-- StarterGui.speedboost.Frame.UIDrag
+local function C_3()
+local script = G2L["3"];
+	-- Made by Real_IceyDev (@lceyDex) --
+	-- Simple UI dragger (PC Only/Any device that has a mouse) --
+	
+	local UIS = game:GetService('UserInputService')
+	local frame = script.Parent
+	local dragToggle = nil
+	local dragSpeed = 0.25
+	local dragStart = nil
+	local startPos = nil
+	
+	local function updateInput(input)
+		local delta = input.Position - dragStart
+		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+	end
+	
+	frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+			dragToggle = true
+			dragStart = input.Position
+			startPos = frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+	
+	UIS.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			if dragToggle then
+				updateInput(input)
+			end
+		end
+	end)
+end;
+task.spawn(C_3);
+-- StarterGui.speedboost.Frame.Frame.speed.LocalScript
+local function C_9()
+local script = G2L["9"];
+	local Players = game:GetService("Players")
+	local UserInputService = game:GetService("UserInputService")
+	
+	local player = Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+	local humanoid = character:WaitForChild("Humanoid")
+	
+	local button = script.Parent
+	local originalWalkSpeed = humanoid.WalkSpeed
+	local boostSpeed = 29
+	
+	local isEnabled = false
+	local connection = nil
+	
+	-- Function to enable boost
+	local function enableBoost()
+	    if isEnabled then return end
+	    
+	    isEnabled = true
+	    button.Text = "boost: enabled"
+	    
+	    -- Set speed and maintain it
+	    connection = game:GetService("RunService").Heartbeat:Connect(function()
+	        if humanoid and humanoid.Health > 0 then
+	            humanoid.WalkSpeed = boostSpeed
+	        end
+	    end)
+	end
+	
+	-- Function to disable boost
+	local function disableBoost()
+	    if not isEnabled then return end
+	    
+	    isEnabled = false
+	    button.Text = "boost"
+	    
+	    -- Clean up connection and restore speed
+	    if connection then
+	        connection:Disconnect()
+	        connection = nil
+	    end
+	    
+	    if humanoid then
+	        humanoid.WalkSpeed = originalWalkSpeed
+	    end
+	end
+	
+	-- Button click handler
+	button.MouseButton1Click:Connect(function()
+	    if isEnabled then
+	        disableBoost()
+	    else
+	        enableBoost()
+	    end
+	end)
+	
+	-- Keybind handler (V key)
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	    if gameProcessed then return end
+	    
+	    if input.KeyCode == Enum.KeyCode.V then
+	        if isEnabled then
+	            disableBoost()
+	        else
+	            enableBoost()
+	        end
+	    end
+	end)
+	
+	-- Handle character respawn
+	player.CharacterAdded:Connect(function(newCharacter)
+	    character = newCharacter
+	    humanoid = character:WaitForChild("Humanoid")
+	    originalWalkSpeed = humanoid.WalkSpeed
+	    
+	    -- If boost was enabled, reapply it to new character
+	    if isEnabled then
+	        -- Reconnect the heartbeat event for new character
+	        if connection then
+	            connection:Disconnect()
+	        end
+	        
+	        connection = game:GetService("RunService").Heartbeat:Connect(function()
+	            if humanoid and humanoid.Health > 0 then
+	                humanoid.WalkSpeed = boostSpeed
+	            end
+	        end)
+	    end
+	end)
+end;
+task.spawn(C_9);
+-- StarterGui.speedboost.persisting gui
+local function C_c()
+local script = G2L["c"];
+	-- This script ensures the GUI persists after player death
+	local StarterGui = game:GetService("StarterGui")
+	local Players = game:GetService("Players")
+	
+	local player = Players.LocalPlayer
+	local playerGui = player:WaitForChild("PlayerGui")
+	
+	-- Function to clone the GUI to PlayerGui if it doesn't exist
+	local function ensureGuiExists()
+	    local speedboostGui = playerGui:FindFirstChild("speedboost")
+	    if not speedboostGui then
+	        local starterGui = StarterGui:FindFirstChild("speedboost")
+	        if starterGui then
+	            local clone = starterGui:Clone()
+	            clone.Parent = playerGui
+	            clone.ResetOnSpawn = false
+	        end
+	    end
+	end
+	
+	-- Ensure GUI exists when script runs
+	ensureGuiExists()
+	
+	-- Also ensure it exists when character respawns
+	player.CharacterAdded:Connect(ensureGuiExists)
+end;
+task.spawn(C_c);
+
+return G2L["1"], require;
