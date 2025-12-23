@@ -150,7 +150,7 @@ local script = G2L["9"];
 	
 	local button = script.Parent
 	local originalWalkSpeed = humanoid.WalkSpeed
-	local boostSpeed = 34.4
+	local boostSpeed = 48
 	
 	local isEnabled = false
 	local connection = nil
